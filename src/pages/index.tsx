@@ -1,15 +1,11 @@
 import React from "react";
-import { useSession, signIn, signOut } from "next-auth/react";
-import { Button } from "@chakra-ui/react";
+import { useSession } from "next-auth/react";
+import { Navbar } from "@/components/Navbar";
 
 function Dashboard() {
-  return (
-    <div>
-      <Button variant="outline" size={"md"} onClick={() => signIn()}>
-        Login
-      </Button>
-    </div>
-  );
+  const { data } = useSession();
+
+  return <Navbar />;
 }
 
 export default Dashboard;

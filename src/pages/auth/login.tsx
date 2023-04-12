@@ -5,20 +5,28 @@ import type {
 import { getProviders, signIn } from "next-auth/react";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../api/auth/[...nextauth]";
-import { Button } from "@chakra-ui/react";
+import { Button, Box } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 
 export default function SignIn({
   providers,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const { callbackUrl } = useRouter().query;
+
   return (
     <>
-      {Object.values(providers).map((provider) => (
-        <div key={provider.name}>
-          <Button variant="solid" onClick={() => signIn(provider.id)}>
-            Sign in with {provider.name}
-          </Button>
-        </div>
-      ))}
+      <Box w={"100vw"} h={"100vh"} display="grid" placeContent="center">
+        {Object.values(providers).map((provider) => (
+          <div key={provider.name}>
+            <Button
+              variant="solid"
+              onClick={() => signIn(provider.id, { callbackUrl: "/" })}
+            >
+              Sign in with {provider.name}
+            </Button>
+          </div>
+        ))}
+      </Box>
     </>
   );
 }
@@ -26,9 +34,6 @@ export default function SignIn({
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await getServerSession(context.req, context.res, authOptions);
 
-  // If the user is already logged in, redirect.
-  // Note: Make sure not to redirect to the same page
-  // To avoid an infinite loop!
   if (session) {
     return { redirect: { destination: "/" } };
   }

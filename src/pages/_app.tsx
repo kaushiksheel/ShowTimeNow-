@@ -1,7 +1,9 @@
 import "@/styles/globals.css";
-import { ChakraProvider } from "@chakra-ui/react";
+
+import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import type { AppProps } from "next/app";
 import { SessionProvider } from "next-auth/react";
+import { theme } from "@/themes/theme";
 
 export default function App({
   Component,
@@ -9,9 +11,10 @@ export default function App({
 }: AppProps) {
   return (
     <SessionProvider>
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
         <Component {...pageProps} />
       </ChakraProvider>
+      <ColorModeScript initialColorMode={theme.config.intialColorMode} />
     </SessionProvider>
   );
 }
