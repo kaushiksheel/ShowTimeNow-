@@ -1,11 +1,10 @@
+import { IMAGE_LINK } from "@/constants";
 import { Box } from "@chakra-ui/react";
 import Image from "next/image";
 import React from "react";
 
 const imgLink =
   "https://images.unsplash.com/photo-1681206691902-14878e9c28db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxNXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60";
-
-export const IMAGE_LINK = "https://image.tmdb.org/t/p/w500";
 
 interface IProps {
   imgSrc: string;

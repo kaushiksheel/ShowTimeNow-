@@ -5,7 +5,7 @@ import React from "react";
 
 function MovieInfo() {
   const { colorMode } = useColorMode();
-  const [isSmallerThan600] = useMediaQuery('(max-width: 600px)')
+
   const isDarkMode = colorMode === "dark" ? true : false;
   return (
     <>

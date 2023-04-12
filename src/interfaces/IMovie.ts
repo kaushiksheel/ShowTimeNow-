@@ -12,3 +12,15 @@ export interface IMovie {
   title: string;
   vote_average: number;
 }
+
+export interface IMovieInfo extends IMovie {
+  genres: {
+    id: number;
+    name: string;
+  };
+  spoken_languages: {
+    english_name: string;
+    name: string;
+  }[];
+  runtime: number;
+}
