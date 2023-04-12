@@ -2,6 +2,7 @@ import { Box, Container, Flex, Text, Button } from "@chakra-ui/react";
 import React from "react";
 import { DropDown } from "./DropDown";
 import { useSession, signIn } from "next-auth/react";
+import { ThemeToggle } from "./ThemeToggle";
 
 export const Navbar = () => {
   const { status } = useSession();
@@ -13,20 +14,23 @@ export const Navbar = () => {
           <Text fontWeight="semibold" fontSize="xl">
             ShowTimeNow
           </Text>
-          {isAuthenticated ? (
-            <DropDown />
-          ) : (
-            <Button
-              textColor="white"
-              _hover={{
-                background: "linear(to-l, #7928CA, #FF0080)",
-              }}
-              bgGradient="linear(to-l, #7928CA, #FF0080)"
-              onClick={() => signIn()}
-            >
-              Login
-            </Button>
-          )}
+          <Flex columnGap={3}>
+            <ThemeToggle />
+            {isAuthenticated ? (
+              <DropDown />
+            ) : (
+              <Button
+                textColor="white"
+                _hover={{
+                  background: "blue.100",
+                }}
+                bg="blue.50"
+                onClick={() => signIn()}
+              >
+                Login
+              </Button>
+            )}
+          </Flex>
         </Flex>
       </Container>
     </Box>
