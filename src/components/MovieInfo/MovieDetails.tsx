@@ -3,6 +3,7 @@ import { StarIcon } from "@heroicons/react/24/solid";
 import React from "react";
 import { MovieInfoAction } from "./MovieInfoAction";
 import { IGenre } from "@/interfaces/IMovie";
+import { formatGenres, formatMinToHr } from "@/utilities/formatUtils";
 
 interface IProps {
   title: string;
@@ -36,16 +37,16 @@ export const MovieDetails = ({
         mt={2}
       >
         <StarIcon width={25} height={25} />
-        <span>{voteAverage}/10</span>
+        <span>{Math.floor(voteAverage)}/10</span>
       </Text>
       <Text fontSize="xl" textColor="gray.200">
-        Action/Thriller/Comedy
+        {formatGenres(genres)}
+      </Text>
+      <Text fontSize="xl" textColor="gray.200" textTransform="capitalize">
+        {originalLanguage}
       </Text>
       <Text fontSize="xl" textColor="gray.200">
-        English
-      </Text>
-      <Text fontSize="xl" textColor="gray.200">
-        {runtime}
+        {formatMinToHr(runtime)}
       </Text>
       <Text fontSize="xl" textColor="gray.200">
         {releaseDate}
