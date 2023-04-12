@@ -1,12 +1,9 @@
-/** @type {import('next').NextConfig} */
+/** @type {import('next').NextConfig}*/
 const nextConfig = {
   reactStrictMode: true,
   images: {
     domains: ["images.unsplash.com", "image.tmdb.org"],
   },
-};
-
-module.exports = {
   async redirects() {
     return [
       {
@@ -16,5 +13,6 @@ module.exports = {
       },
     ];
   },
-  nextConfig,
 };
+
+module.exports = nextConfig;
