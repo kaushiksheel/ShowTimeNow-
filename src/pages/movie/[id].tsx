@@ -1,12 +1,20 @@
 import { Header } from "@/components/MovieInfo";
 import { Navbar } from "@/components/Navbar";
-import { Container, Text, useColorMode, useMediaQuery } from "@chakra-ui/react";
+import { IMovie, IMovieInfo } from "@/interfaces/IMovie";
+import { getMovieById, getMovies } from "@/services/requests";
+import { Container, Text, useColorMode } from "@chakra-ui/react";
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import React from "react";
 
-function MovieInfo() {
+interface IProps {
+  movie: IMovieInfo;
+}
+
+function MovieInfo({ movie }: IProps) {
   const { colorMode } = useColorMode();
 
   const isDarkMode = colorMode === "dark" ? true : false;
+
   return (
     <>
       <header>
@@ -14,17 +22,12 @@ function MovieInfo() {
       </header>
       <main>
         <Container maxW={1200} mt={5}>
-          <Header />
+          <Header movie={movie} />
           <Text fontWeight="semibold" fontSize="xl" mt={5}>
             Overview
           </Text>
           <Text textColor={isDarkMode ? "gray.300" : "black"} mt={2}>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore in
-            accusamus voluptatibus, impedit earum fugit nam at voluptatem autem,
-            eveniet repellat. Distinctio, nisi! Eligendi incidunt optio
-            inventore eveniet in cupiditate cumque voluptate fugiat, eius
-            molestias commodi aliquam temporibus laboriosam accusamus nam
-            perferendis nesciunt sit? Veniam, libero earum? Sit, quae harum!
+            {movie?.overview}
           </Text>
         </Container>
       </main>
@@ -33,3 +36,30 @@ function MovieInfo() {
 }
 
 export default MovieInfo;
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const movies = (await getMovies()) as { results: IMovie[] };
+  const paths = movies?.results?.map((movie) => {
+    return {
+      params: {
+        id: movie.id.toString(),
+      },
+    };
+  });
+
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async (
+  context: GetStaticPropsContext
+): Promise<{ props: { movie: IMovieInfo } }> => {
+  const movieId = context.params?.id;
+  const movie = await getMovieById(parseInt(movieId as string));
+
+  return {
+    props: { movie },
+  };
+};
