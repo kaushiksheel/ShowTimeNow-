@@ -1,5 +1,6 @@
-import { Flex, Stack, Text, CardBody as CrdBody, Link } from "@chakra-ui/react";
+import { Flex, Stack, Text, CardBody as CrdBody } from "@chakra-ui/react";
 import { StarIcon } from "@heroicons/react/24/solid";
+import Link from "next/link";
 import React from "react";
 
 interface IProps {
@@ -21,7 +22,10 @@ export const CardBody = ({
     <CrdBody>
       <Stack>
         <Flex justifyContent="space-between">
-          <Link href={`/movie/${movieId}`} fontWeight={500} fontSize="xl">
+          <Link
+            href={`/movie/${movieId}`}
+            style={{ fontWeight: 500, fontSize: 18 }}
+          >
             {title || originalTitle}
           </Link>
           <Text display="flex" alignItems="center" columnGap={2}>
