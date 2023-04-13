@@ -51,7 +51,7 @@ export const MovieDetails = ({
       <Text fontSize="xl" textColor="gray.200">
         {releaseDate}
       </Text>
-      <MovieInfoAction />
+      <MovieInfoAction title={title || originalTitle} />
     </Box>
   );
 };

@@ -13,3 +13,8 @@ export const formatGenres = (genres: IGenre[]) => {
   const formattedGenres = genreTitle.join("/");
   return formattedGenres;
 };
+
+export const formatSlug = (slug: string = "") => {
+  const formattedSlug = slug.split("-").join(" ").toUpperCase();
+  return formattedSlug;
+};
