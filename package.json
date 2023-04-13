@@ -15,6 +15,7 @@
     "@fontsource/raleway": "^4.5.12",
     "@fontsource/space-grotesk": "^4.5.13",
     "@heroicons/react": "^2.0.17",
+    "@stripe/stripe-js": "^1.52.1",
     "@types/node": "18.15.11",
     "@types/react": "18.0.34",
     "@types/react-dom": "18.0.11",
@@ -26,6 +27,7 @@
     "next-auth": "^4.22.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "stripe": "^12.1.0",
     "typescript": "5.0.4"
   }
 }
