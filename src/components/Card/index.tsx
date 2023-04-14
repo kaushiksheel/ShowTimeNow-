@@ -9,11 +9,11 @@ interface IProps {
 }
 
 export const Card = ({ movie }: IProps) => {
-  const { title, original_title, vote_average, genre_ids, poster_path, id } =
+  const { title, original_title, vote_average, genre_ids, backdrop_path, id } =
     movie;
   return (
     <Crd w={"100%"}>
-      <CardMedia imgSrc={poster_path} />
+      <CardMedia imgSrc={backdrop_path} />
       <CardBody
         title={title}
         originalTitle={original_title}

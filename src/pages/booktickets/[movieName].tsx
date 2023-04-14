@@ -1,4 +1,5 @@
 import { BookTicketsHeader } from "@/components/BookTicketsHeader";
+import { Checkout } from "@/components/Checkout";
 import { Seats } from "@/components/Seats";
 import { SelectTiming } from "@/components/SelectTiming";
 import { formatSlug } from "@/utilities/formatUtils";
@@ -23,9 +24,10 @@ function MovieName() {
           <Box marginX="auto" marginY={12} w="fit-content">
             <Seats />
           </Box>
-          <Button marginX="auto" w="fit-content">
+          {/* <Button marginX="auto" w="fit-content">
             Pay 200
-          </Button>
+          </Button> */}
+          <Checkout />
         </Container>
       </main>
     </>

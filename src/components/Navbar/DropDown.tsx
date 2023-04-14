@@ -11,8 +11,10 @@ import {
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 export const DropDown = () => {
+  const router = useRouter();
   const { colorMode } = useColorMode();
   const { data } = useSession();
   const { user } = data ?? {};
@@ -29,7 +31,7 @@ export const DropDown = () => {
         <Avatar src={user?.image || ""} name="kaushik" size="sm" />
       </MenuButton>
       <MenuList>
-        <MenuItem>Profile</MenuItem>
+        <MenuItem onClick={() => router.push("/profile")}>Profile</MenuItem>
         <MenuItem onClick={() => signOut()}>Logout</MenuItem>
       </MenuList>
     </Menu>
